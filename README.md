@@ -7,13 +7,12 @@ This project simulates a simplified data governance metadata platform.
 
 ## 🚀 Tech Stack
 
-- API Framework: FastAPI  
-- Database: MySQL  
-- ORM: SQLAlchemy  
-- Migrations: Alembic  
-- Containerization: Docker & docker-compose  
-- Dependency Management: Poetry  
-- Configuration: .env file  
+- FastAPI  
+- MySQL  
+- SQLAlchemy  
+- Alembic  
+- Docker & Docker Compose  
+- Poetry  
 
 ---
 
@@ -36,22 +35,19 @@ Stored metadata includes:
 
 ### 2. Prioritized Dataset Search
 
-Search functionality follows this priority order:
+Search follows this priority order:
 
 1. Table name (highest priority)  
 2. Column name  
 3. Schema name  
 4. Database name  
 
-This ensures the most relevant datasets appear first.
-
 ---
 
-### 3. Dataset Lineage (Directed Graph)
+### 3. Dataset Lineage
 
 - Supports upstream and downstream relationships  
-- Prevents cycle creation in lineage graph  
-- Returns meaningful error on invalid lineage  
+- Prevents cyclic dependencies  
 
 ---
 
@@ -68,14 +64,9 @@ This ensures the most relevant datasets appear first.
 
 ```bash
 docker-compose up --build
-```
-
 Once started, open:
 
-```
 http://localhost:8000/docs
-```
-
 This opens Swagger UI for API testing.
 
 📂 Project Structure
@@ -96,7 +87,6 @@ metadata-service/
 📑 API Endpoints
 ➕ Add Dataset
 POST /datasets
-Example:
 
 {
   "fqn": "conn1.sales.public.users",
@@ -110,35 +100,22 @@ Example:
 GET /search?q=users
 🔗 Create Lineage
 POST /lineage
-Example:
 
 {
   "upstream": "conn1.sales.public.users",
   "downstream": "conn1.sales.public.orders"
 }
 🧠 Architecture & Design Decisions
-FastAPI
-High performance
+FastAPI for validation and automatic API documentation
 
-Automatic OpenAPI documentation
+SQLAlchemy as ORM layer
 
-Built-in validation
+MySQL as production-style relational database
 
-SQLAlchemy
-Clean ORM layer
-
-Easy integration with Alembic migrations
-
-MySQL
-Production-like relational database
-
-Docker Compose
-Isolated API and database services
-
-Simple local setup
+Docker Compose for easy setup
 
 ⚙️ Search Logic
-The search query is matched against:
+Search is matched against:
 
 Table name
 
@@ -148,38 +125,28 @@ Schema name
 
 Database name
 
-Results are returned based on this strict priority order.
+Results follow strict priority order.
 
 🔗 Lineage Handling
 Stored as directed relationships
 
-Graph traversal used to detect cycles
+Cycle detection prevents invalid graphs
 
-Prevents invalid lineage creation
-
-📦 Sample Data
-Sample datasets can be added using Swagger UI:
-
-http://localhost:8000/docs
 ⚠️ Assumptions & Limitations
-No authentication implemented
+No authentication
 
-Basic text-based search
+Basic text search
 
-No UI visualization for lineage
+No lineage visualization UI
 
 ✅ Future Improvements
-Lineage traversal endpoints
+Lineage traversal APIs
 
-Pagination for search results
+Pagination
 
-Full Alembic migrations
+Advanced search
 
-Lineage visualization UI
+Visualization UI
 
 👨‍💻 Author
 Built as part of a backend technical assessment using FastAPI and MySQL.
-
-
----
-
