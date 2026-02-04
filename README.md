@@ -106,47 +106,47 @@ POST /lineage
   "downstream": "conn1.sales.public.orders"
 }
 🧠 Architecture & Design Decisions
-FastAPI for validation and automatic API documentation
+. FastAPI for validation and automatic API documentation
 
-SQLAlchemy as ORM layer
+. SQLAlchemy as ORM layer
 
-MySQL as production-style relational database
+. MySQL as production-style relational database
 
-Docker Compose for easy setup
+. Docker Compose for easy setup
 
 ⚙️ Search Logic
 Search is matched against:
 
-Table name
+. Table name
 
-Column name
+. Column name
 
-Schema name
+. Schema name
 
-Database name
+. Database name
 
 Results follow strict priority order.
 
 🔗 Lineage Handling
-Stored as directed relationships
+. Stored as directed relationships
 
-Cycle detection prevents invalid graphs
+. Cycle detection prevents invalid graphs
 
 ⚠️ Assumptions & Limitations
-No authentication
+. No authentication
 
-Basic text search
+. Basic text search
 
-No lineage visualization UI
+. No lineage visualization UI
 
 ✅ Future Improvements
-Lineage traversal APIs
+. Lineage traversal APIs
 
-Pagination
+. Pagination
 
-Advanced search
+. Advanced search
 
-Visualization UI
+. Visualization UI
 
 👨‍💻 Author
 Built as part of a backend technical assessment using FastAPI and MySQL.
